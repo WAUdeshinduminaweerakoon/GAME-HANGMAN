@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
@@ -9,13 +10,14 @@ public class Hangman {
         Scanner scanner = new Scanner(new File("C:/Users/Dell/Desktop/Game-Hangman/words_alpha.txt"));
 
         List<String> words = new ArrayList<>();
-        While(scanner.hasNext());
-        {
+        while (scanner.hasNext()) {
             words.add(scanner.nextLine());
         }
-    }
+        // Close the scanner after reading from the file
+        scanner.close();
 
-    private static void While(boolean hasNext) {
+        Random rand = new Random();
+        String word = words.get(rand.nextInt(words.size()));
+        System.out.println(word);
     }
-
 }
