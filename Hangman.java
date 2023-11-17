@@ -19,5 +19,17 @@ public class Hangman {
         Random rand = new Random();
         String word = words.get(rand.nextInt(words.size()));
         System.out.println(word);
+
+        List<Character> newplayer = new ArrayList<>();
+
+        for (int i = 0; i < word.length(); i++) {
+            if (newplayer.contains(word.charAt(i))) {
+                System.out.print(word.charAt(i));
+
+            } else {
+                System.out.print("-");
+            }
+        }
+
     }
 }
