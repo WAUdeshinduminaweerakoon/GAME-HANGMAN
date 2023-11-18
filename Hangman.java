@@ -24,12 +24,22 @@ public class Hangman {
         List<Character> newplayer = new ArrayList<>();
 
         printWordState(word, newplayer);
+        System.out.println("");
+        getPlayerLitterGuess(keyboardLitter, word, newplayer);
+
+    }
+
+    private static void getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
 
         System.out.println("Please enter a litter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
         newplayer.add(letterPlayerGuess.charAt(0));
 
         printWordState(word, newplayer);
+
+    }
+
+    private static void printWordState(String word, List<Character> newplayer) {
 
         for (int i = 0; i < word.length(); i++) {
             if (newplayer.contains(word.charAt(i))) {
@@ -38,10 +48,8 @@ public class Hangman {
             } else {
                 System.out.print("-");
             }
+
         }
 
-    }
-
-    private static void printWordState(String word, List<Character> newplayer) {
     }
 }
