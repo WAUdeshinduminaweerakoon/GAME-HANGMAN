@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Hangman {
     public static void main(String args[]) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File("C:/Users/Dell/Desktop/Game-Hangman/words_alpha.txt"));
