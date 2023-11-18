@@ -24,13 +24,15 @@ public class Hangman {
         List<Character> newplayer = new ArrayList<>();
 
         printWordState(word, newplayer);
-        System.out.println("");
-        getPlayerLitterGuess(keyboardLitter, word, newplayer);
+
+        while (true) {
+            getPlayerLitterGuess(keyboardLitter, word, newplayer);
+        }
 
     }
 
     private static void getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
-
+        System.out.println("");
         System.out.println("Please enter a litter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
         newplayer.add(letterPlayerGuess.charAt(0));
