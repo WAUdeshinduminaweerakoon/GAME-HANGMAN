@@ -51,6 +51,7 @@ public class Hangman {
                 correctCount++;
 
             } else {
+
                 System.out.print("-");
             }
 
