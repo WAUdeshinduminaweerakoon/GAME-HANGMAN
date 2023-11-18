@@ -27,31 +27,35 @@ public class Hangman {
 
         while (true) {
             getPlayerLitterGuess(keyboardLitter, word, newplayer);
+            if (printWordState(word, newplayer)) {
+                break;
+            }
         }
+        System.out.println("You win ! ");
 
     }
 
     private static void getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
-        System.out.println("");
+        // System.out.println("");
         System.out.println("Please enter a litter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
         newplayer.add(letterPlayerGuess.charAt(0));
 
-        printWordState(word, newplayer);
-
     }
 
-    private static void printWordState(String word, List<Character> newplayer) {
-
+    private static boolean printWordState(String word, List<Character> newplayer) {
+        int correctCount = 0;
         for (int i = 0; i < word.length(); i++) {
             if (newplayer.contains(word.charAt(i))) {
                 System.out.print(word.charAt(i));
+                correctCount++;
 
             } else {
                 System.out.print("-");
             }
 
         }
-
+        System.out.println();
+        return (word.length() == correctCount);
     }
 }
