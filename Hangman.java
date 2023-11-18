@@ -36,7 +36,7 @@ public class Hangman {
     }
 
     private static void getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
-        // System.out.println("");
+        System.out.println("");
         System.out.println("Please enter a litter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
         newplayer.add(letterPlayerGuess.charAt(0));
