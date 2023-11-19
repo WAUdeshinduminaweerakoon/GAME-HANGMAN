@@ -25,40 +25,19 @@ public class Hangman {
 
         int wrongGuessWordCount = 0;
         while (true) {
-            System.out.println("I'm a hangman!, save me..........");
 
-            System.out.println("---------");
-            System.out.println(" |      |");
-            if (wrongGuessWordCount >= 1) {
-                System.out.println(" O");
+            printHangeMan(wrongGuessWordCount);
+
+            if (wrongGuessWordCount >= 6) {
+                System.out.println("The man said, I did not save");
+                System.out.println("You lose!");
+                break;
             }
-            if (wrongGuessWordCount >= 2) {
-                System.out.print("\\");
-                if (wrongGuessWordCount >= 3) {
-                    System.out.println(" /");
-                } else {
-                    System.out.println("");
-                }
-            }
-            if (wrongGuessWordCount >= 4) {
-                System.out.println(" |");
-            }
-            if (wrongGuessWordCount >= 5) {
-                System.out.print("/");
-                if (wrongGuessWordCount >= 6) {
-                    System.out.println(" \\");
-                } else {
-                    System.out.println("");
-                }
-            }
-            System.out.println("");
-            System.out.println("");
 
             printWordState(word, newplayer);
             if (!getPlayerLitterGuess(keyboardLitter, word, newplayer)) {
                 wrongGuessWordCount++;
             }
-            ;
 
             if (printWordState(word, newplayer)) {
                 break;
@@ -71,6 +50,38 @@ public class Hangman {
                 System.out.println("No ! Try again.! ");
             }
         }
+
+    }
+
+    private static void printHangeMan(Integer wrongGuessWordCount) {
+        System.out.println("I'm a hangman!, save me..........");
+
+        System.out.println("---------");
+        System.out.println(" |      |");
+        if (wrongGuessWordCount >= 1) {
+            System.out.println(" O");
+        }
+        if (wrongGuessWordCount >= 2) {
+            System.out.print("\\");
+            if (wrongGuessWordCount >= 3) {
+                System.out.println(" /");
+            } else {
+                System.out.println("");
+            }
+        }
+        if (wrongGuessWordCount >= 4) {
+            System.out.println(" |");
+        }
+        if (wrongGuessWordCount >= 5) {
+            System.out.print("/");
+            if (wrongGuessWordCount >= 6) {
+                System.out.println(" \\");
+            } else {
+                System.out.println("");
+            }
+        }
+        System.out.println("");
+        System.out.println("");
 
     }
 
