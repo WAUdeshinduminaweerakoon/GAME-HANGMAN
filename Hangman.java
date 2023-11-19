@@ -23,15 +23,20 @@ public class Hangman {
 
         List<Character> newplayer = new ArrayList<>();
 
-        printWordState(word, newplayer);
-
         while (true) {
+            printWordState(word, newplayer);
             getPlayerLitterGuess(keyboardLitter, word, newplayer);
             if (printWordState(word, newplayer)) {
                 break;
             }
+            System.out.println("Please enter your guess for the word: ");
+            if (keyboardLitter.nextLine().equals(word)) {
+                System.out.println("You win ! Congratulations! ");
+                break;
+            } else {
+                System.out.println("No ! Try again.! ");
+            }
         }
-        System.out.println("You win ! ");
 
     }
 
