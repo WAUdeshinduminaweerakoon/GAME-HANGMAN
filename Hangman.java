@@ -28,12 +28,12 @@ public class Hangman {
             System.out.println("I'm a hangman!, save me..........");
 
             System.out.println("---------");
-            System.out.println("|        |");
+            System.out.println(" |      |");
             if (wrongGuessWordCount >= 1) {
                 System.out.println(" O");
             }
             if (wrongGuessWordCount >= 2) {
-                System.out.println("\\");
+                System.out.print("\\");
                 if (wrongGuessWordCount >= 3) {
                     System.out.println(" /");
                 } else {
@@ -44,7 +44,7 @@ public class Hangman {
                 System.out.println(" |");
             }
             if (wrongGuessWordCount >= 5) {
-                System.out.println("/");
+                System.out.print("/");
                 if (wrongGuessWordCount >= 6) {
                     System.out.println(" \\");
                 } else {
