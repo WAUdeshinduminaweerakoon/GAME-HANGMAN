@@ -171,14 +171,14 @@ public class Hangman {
     // return word.contains(letterPlayerGuess);
 
     // }
-    private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> incorrectGuesses) {
+    private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
         System.out.println("");
         System.out.println("Please enter a letter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
 
         // Check if the input is not empty before adding the first character
         if (!letterPlayerGuess.isEmpty()) {
-            // newplayer.add(letterPlayerGuess.charAt(0));
+            newplayer.add(letterPlayerGuess.charAt(0));
             return word.contains(letterPlayerGuess);
         } else {
             System.out.println("Invalid input. Please enter a letter.");
