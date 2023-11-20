@@ -7,18 +7,31 @@ import java.util.Scanner;
 
 public class Hangman {
     public static void main(String args[]) throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("C:/Users/Dell/Desktop/Game-Hangman/words_alpha.txt"));
+
         Scanner keyboardLitter = new Scanner(System.in);
+        System.out.println("1 or 2 players(plass enter 1 or 2) : ");
+        String numberOfPlayer = keyboardLitter.nextLine();
 
-        List<String> words = new ArrayList<>();
-        while (scanner.hasNext()) {
-            words.add(scanner.nextLine());
+        String word;
+        if (numberOfPlayer.equals("1")) {
+
+            Scanner scanner = new Scanner(new File("C:/Users/Dell/Desktop/Game-Hangman/words_alpha.txt"));
+
+            List<String> words = new ArrayList<>();
+            while (scanner.hasNext()) {
+                words.add(scanner.nextLine());
+            }
+            // Close the scanner after reading from the file
+            scanner.close();
+
+            Random rand = new Random();
+            word = words.get(rand.nextInt(words.size()));
+        } else {
+            System.out.println("Player 1, please enter your word: ");
+            word = keyboardLitter.nextLine();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            System.out.println("Ready for player 2! Good luck!");
         }
-        // Close the scanner after reading from the file
-        scanner.close();
-
-        Random rand = new Random();
-        String word = words.get(rand.nextInt(words.size()));
         System.out.println(word);
 
         List<Character> newplayer = new ArrayList<>();
