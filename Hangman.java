@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
+    private static final int MAX_WRONG_GUESSES = 6;
+
     public static void main(String args[]) throws FileNotFoundException {
 
         Scanner keyboardLitter = new Scanner(System.in);
@@ -66,37 +68,38 @@ public class Hangman {
             System.out.println("Ready for player 2! Good luck!");
         }
 
-        List<Character> newplayer = new ArrayList<>();
+        List<Character> incorrectGuesses = new ArrayList<>();
 
         int wrongGuessWordCount = 0;
         while (true) {
-
             printHangeMan(wrongGuessWordCount);
 
-            if (wrongGuessWordCount >= 6) {
+            if (wrongGuessWordCount >= MAX_WRONG_GUESSES) {
                 System.out.println("The man said, I did not save");
                 System.out.println("You lose!");
-                System.out.println("The word was : " + word);
+                System.out.println("The word was: " + word);
                 break;
             }
 
-            printWordState(word, newplayer);
-            if (!getPlayerLitterGuess(keyboardLitter, word, newplayer)) {
+            // Get the player's letter guess first
+            if (!getPlayerLitterGuess(keyboardLitter, word, incorrectGuesses)) {
                 wrongGuessWordCount++;
             }
 
-            if (printWordState(word, newplayer)) {
+            // Print the word state after getting the player's guess
+            if (printWordState(word, incorrectGuesses)) {
                 break;
             }
+
+            System.out.println("Incorrect letters guessed so far: " + incorrectGuesses);
             System.out.println("Please enter your guess for the word: ");
             if (keyboardLitter.nextLine().equals(word)) {
-                System.out.println("You win ! Congratulations! ");
+                System.out.println("You win! Congratulations!");
                 break;
             } else {
-                System.out.println("No ! Try again.! ");
+                System.out.println("No! Try again!");
             }
         }
-
     }
 
     private static List<String> readWordsFromFile() throws FileNotFoundException {
@@ -158,14 +161,30 @@ public class Hangman {
 
     }
 
-    private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
+    // private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String
+    // word, List<Character> newplayer) {
+    // System.out.println("");
+    // System.out.println("Please enter a litter:");
+    // String letterPlayerGuess = keyboardLitter.nextLine();
+    // newplayer.add(letterPlayerGuess.charAt(0));
+
+    // return word.contains(letterPlayerGuess);
+
+    // }
+    private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> incorrectGuesses) {
         System.out.println("");
-        System.out.println("Please enter a litter:");
+        System.out.println("Please enter a letter:");
         String letterPlayerGuess = keyboardLitter.nextLine();
-        newplayer.add(letterPlayerGuess.charAt(0));
 
-        return word.contains(letterPlayerGuess);
-
+        // Check if the input is not empty before adding the first character
+        if (!letterPlayerGuess.isEmpty()) {
+            // newplayer.add(letterPlayerGuess.charAt(0));
+            return word.contains(letterPlayerGuess);
+        } else {
+            System.out.println("Invalid input. Please enter a letter.");
+            // You might want to handle this case appropriately, e.g., ask for input again.
+            return false;
+        }
     }
 
     private static boolean printWordState(String word, List<Character> newplayer) {
