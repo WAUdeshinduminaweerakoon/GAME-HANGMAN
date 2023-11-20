@@ -24,8 +24,35 @@ public class Hangman {
             // Close the scanner after reading from the file
             scanner.close();
 
-            Random rand = new Random();
-            word = words.get(rand.nextInt(words.size()));
+            // Random rand = new Random();
+            // // word = words.get(rand.nextInt(words.size()));
+
+            // System.out.println("enter the number of litter in word : ");
+            // int numberOflitter = keyboardLitter.nextInt();
+            // do {
+            // word = words.get(rand.nextInt(words.size()));
+            // } while (word.length() != numberOflitter);
+            System.out.println("Enter the number of letters in the word: ");
+            int numberOfLetters = keyboardLitter.nextInt(); // Read an integer
+
+            // List<String> words = /* your list of words */;
+            // String word;
+
+            // Check if the list is not empty and if the word with the desired number of
+            // letters exists
+            do {
+                if (words.isEmpty()) {
+                    System.out.println("No words available in the list.");
+                    return; // or handle it in some way appropriate for your program
+                }
+                word = words.get(new Random().nextInt(words.size()));
+            } while (word.length() != numberOfLetters);
+
+            System.out.println("Selected word: " + word);
+            scanner.close();
+
+            // --------------------------------------------------------
+
         } else {
             System.out.println("Player 1, please enter your word: ");
             word = keyboardLitter.nextLine();
