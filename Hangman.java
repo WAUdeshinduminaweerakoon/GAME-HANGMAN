@@ -8,11 +8,13 @@ import java.util.Scanner;
 public class Hangman {
     private static final int MAX_WRONG_GUESSES = 6;
 
+    static String numberOfPlayer;
+
     public static void main(String args[]) throws FileNotFoundException {
 
         Scanner keyboardLitter = new Scanner(System.in);
         System.out.println("1 or 2 players(plass enter 1 or 2) : ");
-        String numberOfPlayer = keyboardLitter.nextLine();
+        numberOfPlayer = keyboardLitter.nextLine();
         // ----------------------------------------------------------------
 
         // String word;
@@ -113,9 +115,13 @@ public class Hangman {
     }
 
     private static int getValidNumberOfLetters(Scanner keyboardLitter) {
-        while (!keyboardLitter.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a valid integer.");
-            keyboardLitter.next(); // Consume the invalid input
+        if (numberOfPlayer == "1" || numberOfPlayer == "2") {
+
+            System.out.println("frsf6yedro");
+            while (!keyboardLitter.hasNextInt()) {
+                System.out.println("Invalid input. Please enter a valid integer.");
+                keyboardLitter.next(); // Consume the invalid input
+            }
         }
         return keyboardLitter.nextInt();
     }
@@ -173,18 +179,24 @@ public class Hangman {
     // }
     private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
         System.out.println("");
-        System.out.println("Please enter a letter:");
+
+        System.out.println("Please enter a letter: ");
         String letterPlayerGuess = keyboardLitter.nextLine();
+
+        int counter = 0; // Initialize the counter
 
         // Check if the input is not empty before adding the first character
         if (!letterPlayerGuess.isEmpty()) {
             newplayer.add(letterPlayerGuess.charAt(0));
             return word.contains(letterPlayerGuess);
         } else {
-            System.out.println("Invalid input. Please enter a letter.");
+            counter++; // Increment the counter for invalid input
+            System.out.println("Invalid input. Please guess the word.");
+            // System.out.println("Counter: " + counter);
             // You might want to handle this case appropriately, e.g., ask for input again.
             return false;
         }
+
     }
 
     private static boolean printWordState(String word, List<Character> newplayer) {
