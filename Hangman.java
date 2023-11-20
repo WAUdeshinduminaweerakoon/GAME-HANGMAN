@@ -32,7 +32,7 @@ public class Hangman {
             System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
             System.out.println("Ready for player 2! Good luck!");
         }
-        System.out.println(word);
+        // System.out.println(word);
 
         List<Character> newplayer = new ArrayList<>();
 
@@ -44,6 +44,7 @@ public class Hangman {
             if (wrongGuessWordCount >= 6) {
                 System.out.println("The man said, I did not save");
                 System.out.println("You lose!");
+                System.out.println("The word was : " + word);
                 break;
             }
 
