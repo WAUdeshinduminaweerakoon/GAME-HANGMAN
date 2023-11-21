@@ -10,13 +10,15 @@ public class Hangman {
 
     static String numberOfPlayer;
 
+    static boolean isfirstletteradded = false;
+
     public static void main(String args[]) throws FileNotFoundException {
 
         Scanner keyboardLitter = new Scanner(System.in);
         System.out.println("1 or 2 players(plass enter 1 or 2) : ");
         numberOfPlayer = keyboardLitter.nextLine();
-        // ----------------------------------------------------------------
 
+        // ----------------------------------------------------------------
         // String word;
         // if (numberOfPlayer.equals("1")) {
 
@@ -179,24 +181,24 @@ public class Hangman {
     // }
     private static boolean getPlayerLitterGuess(Scanner keyboardLitter, String word, List<Character> newplayer) {
         System.out.println("");
+        System.out.print("Please enter a letter: ");
+        if (isfirstletteradded == false) {
+            keyboardLitter.nextLine();
+            isfirstletteradded = true;
+        }
+        // Consume the newline character left in the buffer
+        String letterPlayerGuess = keyboardLitter.nextLine().toLowerCase(); // Convert to lowercase for case-insensitive
+                                                                            // comparison
 
-        System.out.println("Please enter a letter: ");
-        String letterPlayerGuess = keyboardLitter.nextLine();
-
-        int counter = 0; // Initialize the counter
-
-        // Check if the input is not empty before adding the first character
-        if (!letterPlayerGuess.isEmpty()) {
-            newplayer.add(letterPlayerGuess.charAt(0));
-            return word.contains(letterPlayerGuess);
+        if (letterPlayerGuess.length() == 1 && Character.isLetter(letterPlayerGuess.charAt(0))) {
+            // Check if the input is a single letter
+            char guess = letterPlayerGuess.charAt(0);
+            newplayer.add(guess);
+            return word.toLowerCase().contains(String.valueOf(guess));
         } else {
-            counter++; // Increment the counter for invalid input
-            System.out.println("Invalid input. Please guess the word.");
-            // System.out.println("Counter: " + counter);
-            // You might want to handle this case appropriately, e.g., ask for input again.
+            System.out.println("Invalid input. Please enter a single letter.");
             return false;
         }
-
     }
 
     private static boolean printWordState(String word, List<Character> newplayer) {
